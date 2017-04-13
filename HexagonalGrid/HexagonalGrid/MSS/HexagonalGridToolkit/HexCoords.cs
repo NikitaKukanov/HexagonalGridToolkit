@@ -8,14 +8,15 @@ namespace MSS.HexagonalGridToolkit
         public int q { get; private set; }
         public int r { get; private set; }
         public int s { get { return -q - s; } }
-        public static HexCoords[] Neighbors { get; private set; }
-        
+        public HexCoords[] Neighbors { get; private set; }
+
         public HexCoords(int _q, int _r)
         {
             q = _q;
             r = _r;
-            Debug.Assert(q + r + s == 0);
 
+            // TODO:?
+            Neighbors = new HexCoords[6];
             Neighbors = new HexCoords[] {
                 this+new HexCoords(1, 0),
                 this+new HexCoords(1, -1),
@@ -24,6 +25,8 @@ namespace MSS.HexagonalGridToolkit
                 this+new HexCoords(-1, 1),
                 this+new HexCoords(0, 1),
             };
+
+            Debug.Assert(q + r + s == 0);
         }
 
         public static int Distance(HexCoords a, HexCoords b)
@@ -88,9 +91,10 @@ namespace MSS.HexagonalGridToolkit
             Width = hparams[1-(int)Orientation]; 
             HorizontalDistance = hdists[1-(int)Orientation];
 
+            // TODO: Corners in Point2 (!)
             Corners = new Point2[6];
             for (int i = 0; i < Corners.Length; i++) {
-                var angle_deg = 60 * i;
+                var angle_deg = 60 * i; // TODO: orientation!!!
                 var angle_rad = Math.PI / 180 * angle_deg;
                 Corners[i] = new Point2(Size * (float)Math.Cos(angle_rad), Size * (float)Math.Sin(angle_rad));
             }
