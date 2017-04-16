@@ -14,7 +14,7 @@ namespace MSS.HexagonalGridToolkit
             return 0;
         }
 
-        protected virtual HexCoords GetHexFromOnedimentionalIndex(int _index)
+        protected virtual HexCoords GetHexCoordsFromOnedimentionalIndex(int _index)
         {
             return new HexCoords();
         }
