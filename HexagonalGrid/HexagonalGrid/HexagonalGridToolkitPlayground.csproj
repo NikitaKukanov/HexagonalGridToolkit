@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MSS\HexagonalGridToolkit\Hexes\HexGeometry.cs" />
+    <Compile Include="MSS\HexagonalGridToolkit\Hexes\HexLayout .cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Helpers\DataTypes.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Helpers\Enums.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Hexes\HexCoords.cs" />
