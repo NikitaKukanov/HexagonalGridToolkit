@@ -26,6 +26,23 @@ namespace MSS.HexagonalGridToolkit
             Debug.Assert(q + r + s == 0);
         }
 
+        public HexCoords(float f_q, float f_r)
+        {
+            float f_s = -f_q - f_r;
+            q = (int)(Math.Round(f_q));
+            r = (int)(Math.Round(f_r));
+            int i_s = (int)(Math.Round(f_s));
+            double q_diff = Math.Abs(q - f_q);
+            double r_diff = Math.Abs(r - f_r);
+            double s_diff = Math.Abs(i_s - f_s);
+            if (q_diff > r_diff && q_diff > s_diff) {
+                q = -r - i_s;
+            } else if (r_diff > s_diff) {
+                r = -q - i_s;
+            }
+            Debug.Assert(q + r + s == 0);
+        }
+
         public IEnumerator<HexCoords> Neighbors()
         {
             for (int i = 0; i < s_neighborsCoords.Length; i++) {

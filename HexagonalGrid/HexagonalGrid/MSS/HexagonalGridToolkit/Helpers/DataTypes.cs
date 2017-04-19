@@ -50,12 +50,23 @@ namespace MSS.HexagonalGridToolkit
             _data = data;
         }
 
-        public static Matrix operator * (Matrix a, int c)
+        public static Matrix operator * (float c, Matrix a)
         {
             Matrix result = new Matrix(new float[a.data.GetLength(0), a.data.GetLength(1)]);
             for (int i = 0; i < a.data.GetLength(0); i++) {
                 for (int j = 0; j < a.data.GetLength(1); j++) {
                     result[i, j] = a[i, j] * c;
+                }
+            }
+            return result;
+        }
+
+        public static Matrix operator / (Matrix a, float c)
+        {
+            Matrix result = new Matrix(new float[a.data.GetLength(0), a.data.GetLength(1)]);
+            for (int i = 0; i < a.data.GetLength(0); i++) {
+                for (int j = 0; j < a.data.GetLength(1); j++) {
+                    result[i, j] = a[i, j] / c;
                 }
             }
             return result;
