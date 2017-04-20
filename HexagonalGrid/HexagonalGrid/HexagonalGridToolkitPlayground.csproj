@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MSS\HexagonalGridToolkit\Grids\HexShape.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Hexes\HexLayout .cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Helpers\DataTypes.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Helpers\Enums.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Hexes\HexCoords.cs" />
-    <Compile Include="MSS\HexagonalGridToolkit\Grids\HexagonHexGrid.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Grids\HexGrid.cs" />
     <Compile Include="MSS\HexagonalGridToolkit\Helpers\HexMath.cs" />
     <Compile Include="Program.cs" />

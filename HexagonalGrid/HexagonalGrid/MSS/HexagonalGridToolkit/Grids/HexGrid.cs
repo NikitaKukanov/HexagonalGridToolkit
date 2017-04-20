@@ -1,29 +1,14 @@
-﻿using System.Diagnostics;
-
-namespace MSS.HexagonalGridToolkit
+﻿namespace MSS.HexagonalGridToolkit
 {
-    public abstract class HexGrid<T>
+    public class HexGrid
     {
         #region Grid Params
 
-        public T[] HexMap { get; protected set; }
-        public HexLayout Layout { get; protected set; }
+        public HexLayout Layout { get; private set; }
+        public HexShape Shape { get; private set; }
 
         #endregion
 
-        public virtual int GetTotalElementsCount()
-        {
-            return 0;
-        }
 
-        protected virtual HexCoords GetHexCoordsFromOnedimentionalIndex(int _index)
-        {
-            return new HexCoords();
-        }
-
-        protected virtual int GetOnedimensionalHexIndex(int q, int r)
-        {
-            return 0;
-        }
     }
 }

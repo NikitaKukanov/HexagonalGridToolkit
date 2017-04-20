@@ -5,6 +5,7 @@ namespace MSS.HexagonalGridToolkit
     public class HexLayout
     {
         #region Properties
+
         public HexOrientation Orientation { get; private set; }
         public float Size { get; private set; }
         public float Width { get; private set; }
@@ -12,9 +13,11 @@ namespace MSS.HexagonalGridToolkit
         public float VerticalDistance { get; private set; }
         public float HorizontalDistance { get; private set; }
         public Point2[] CornersLocalPositions { get; private set; }
+
         #endregion
 
         #region Orientations
+
         public static readonly HexOrientation PointyOrientation = new HexOrientation() {
             ConvertionMatrix = new Matrix(new float[,] {
                 { (float)Math.Sqrt(3), (float)Math.Sqrt(3)/2.0f },
@@ -41,6 +44,7 @@ namespace MSS.HexagonalGridToolkit
             HorizontalDistCalc = 3.0f / 4.0f,
             VerticalDistCalc = 1.0f
         };
+
         #endregion
 
         public HexLayout(float _hexSize, HexOrientation _orientation)
