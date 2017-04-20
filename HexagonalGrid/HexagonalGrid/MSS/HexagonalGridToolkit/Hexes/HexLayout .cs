@@ -57,19 +57,15 @@ namespace MSS.HexagonalGridToolkit
         public Point2 ConvertHexCoordsToWorldPosition(HexCoords _coords)
         {
             Matrix resultMatrixOfSize2 = 
-                this.Size * 
-                this.Orientation.ConvertionMatrix * 
-                new Matrix(new float[,] { { _coords.q }, { _coords.r } });
+                Matrix.Multiply(Matrix.Multiply(this.Orientation.ConvertionMatrix, new Matrix(new float[,] { { _coords.q }, { _coords.r } })), this.Size);
 
             return new Point2(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[0, 1]);
         }
 
         public HexCoords ConvertWorldPositionToHexCoords(Point2 _worldPosition)
         {
-            Matrix resultMatrixOfSize2 =                
-                this.Orientation.ConvertionInverseMatrix *
-                new Matrix(new float[,] { { _worldPosition.x }, { _worldPosition.y } }) /
-                this.Size;
+            Matrix resultMatrixOfSize2 = 
+                Matrix.Multiply(Matrix.Multiply(this.Orientation.ConvertionInverseMatrix, new Matrix(new float[,] { { _worldPosition.x }, { _worldPosition.y } })), this.Size);
 
             return new HexCoords(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[0, 1]);
         }

@@ -26,9 +26,8 @@ namespace MSS.HexagonalGridToolkit
             Debug.Assert(q + r + s == 0);
         }
 
-        public HexCoords(float f_q, float f_r)
-        {
-            float f_s = -f_q - f_r;
+        public HexCoords(float f_q, float f_r, float f_s)
+        {           
             q = (int)(Math.Round(f_q));
             r = (int)(Math.Round(f_r));
             int i_s = (int)(Math.Round(f_s));
@@ -43,6 +42,8 @@ namespace MSS.HexagonalGridToolkit
             Debug.Assert(q + r + s == 0);
         }
 
+        public HexCoords(float f_q, float f_r) : this(f_q, f_r, -f_q - f_r) { }
+
         public IEnumerator<HexCoords> Neighbors()
         {
             for (int i = 0; i < s_neighborsCoords.Length; i++) {
@@ -50,10 +51,36 @@ namespace MSS.HexagonalGridToolkit
             }
         }
 
+        #region Static
+
+        public HexCoords[] GetLineOfHexCoords(HexCoords _from, HexCoords _to)
+        {
+            int distance = HexCoords.Distance(_from, _to);
+            if (distance <= 2) {
+                return new HexCoords[] { _from, _to };
+            }
+            HexCoords[] lineOfHexes = new HexCoords[distance];
+            float step = 1.0f / distance;
+            for (int i = 0; i < distance; i++) {
+                lineOfHexes[i] = HexCoords.Lerp(_from, _to, i * step);
+            }
+            return lineOfHexes;
+        }
+
+        public static HexCoords Lerp(HexCoords a, HexCoords b, float t)
+        {
+            return new HexCoords(
+                a.q * (1 - t) + b.q * t, 
+                a.r * (1 - t) + b.r * t, 
+                a.s * (1 - t) + b.s * t);
+        }
+
         public static int Distance(HexCoords a, HexCoords b)
         {
             return (Math.Abs(a.q - b.q) + Math.Abs(a.r - b.r) + Math.Abs(a.s - b.s)) / 2;
         }
+
+        #endregion
 
         #region Operators
 

@@ -26,15 +26,10 @@ namespace MSS.HexagonalGridToolkit
         }
     }
 
-    public class Matrix
+    public struct Matrix
     {
         // rows, columns
         private float[,] data;
-
-        //     c0 c1 c2
-        // r0 { 1, 2, 3},
-        // r1 { 5, 4, 2},
-        // r2 { 2, 3, 4}
 
         public float this[int i, int j] {
             get {
@@ -47,10 +42,10 @@ namespace MSS.HexagonalGridToolkit
 
         public Matrix(float[,] _data)
         {
-            _data = data;
+            data = _data;
         }
 
-        public static Matrix operator * (float c, Matrix a)
+        public static Matrix Multiply(Matrix a, float c)
         {
             Matrix result = new Matrix(new float[a.data.GetLength(0), a.data.GetLength(1)]);
             for (int i = 0; i < a.data.GetLength(0); i++) {
@@ -61,18 +56,12 @@ namespace MSS.HexagonalGridToolkit
             return result;
         }
 
-        public static Matrix operator / (Matrix a, float c)
-        {
-            Matrix result = new Matrix(new float[a.data.GetLength(0), a.data.GetLength(1)]);
-            for (int i = 0; i < a.data.GetLength(0); i++) {
-                for (int j = 0; j < a.data.GetLength(1); j++) {
-                    result[i, j] = a[i, j] / c;
-                }
-            }
-            return result;
+        public static Matrix Divide(Matrix a, float c)
+        {            
+            return Multiply(a, 1.0f/c);
         }
 
-        public static Matrix operator * (Matrix a, Matrix b)
+        public static Matrix Multiply(Matrix a, Matrix b)
         {
             // number of columns (1) of the left matrix is the same as the number of rows (0) of the right matrix
             Debug.Assert(a.data.GetLength(1) != b.data.GetLength(0));

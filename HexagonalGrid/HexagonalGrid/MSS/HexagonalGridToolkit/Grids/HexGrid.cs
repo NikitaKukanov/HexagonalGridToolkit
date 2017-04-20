@@ -5,8 +5,10 @@ namespace MSS.HexagonalGridToolkit
     public abstract class HexGrid<T>
     {
         #region Grid Params
+
         public T[] HexMap { get; protected set; }
-        public HexOrientation Orientation { get; protected set; }
+        public HexLayout Layout { get; protected set; }
+
         #endregion
 
         public virtual int GetTotalElementsCount()
