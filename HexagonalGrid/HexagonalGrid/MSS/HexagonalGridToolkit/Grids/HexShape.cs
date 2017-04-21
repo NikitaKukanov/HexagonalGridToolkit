@@ -1,16 +1,68 @@
-﻿namespace MSS.HexagonalGridToolkit
+﻿using System;
+
+namespace MSS.HexagonalGridToolkit
 {
     public class HexShape
     {
-        public virtual HexCoords GetHexCoordsFromOnedimentionalIndex(int _index)
+        public int MaxItems { get; private set; }
+        HexShapLoopParamsGetter outerLoop;
+        HexShapLoopParamsGetter innerLoop;
+
+        public HexCoords[][] GenerateHex(int _sizeOuter, int _sizeInner)
         {
-            return new HexCoords();
+            var outerParams = outerLoop.GetLoopParams(_sizeOuter);
+            HexCoords[][] hexes = new HexCoords[outerParams.Size][];
+            for (int q = outerParams.From; q <= outerParams.Max; q++) {
+                var innerParams = innerLoop.GetLoopParams(_sizeInner, q);
+                int i = q - outerParams.From;
+                hexes[i] = new HexCoords[innerParams.Size];
+                for (int r = innerParams.From; r <= innerParams.Max; r++) {
+                    hexes[i][r-innerParams.From] = new HexCoords(q, r);
+                }
+            }
+            return hexes;
         }
 
-        public virtual int GetOnedimensionalHexIndex(int q, int r)
+        public struct HexShapeLoopParams
         {
-            return 0;
+            public int From { get; private set; }
+            public int Max { get; private set; }
+            public int Size { get; private set; }
+
+            public HexShapeLoopParams(int _from, int _max)
+            {
+                From = _from;
+                Max = _max;
+                Size = Max - From + 1;
+            }
         }
+
+        public class HexShapLoopParamsGetter
+        {
+            private Func<int[], int> fromGetter;
+            private Func<int[], int> maxGetter;
+
+            public HexShapLoopParamsGetter(Func<int[], int> _fromGetter, Func<int[], int> _maxGetter)
+            {
+                fromGetter = _fromGetter;
+                maxGetter = _maxGetter;
+            }
+
+            public HexShapeLoopParams GetLoopParams(params int[] _params)
+            {
+                return new HexShapeLoopParams(fromGetter.Invoke(_params), maxGetter.Invoke(_params));
+            }
+        }
+
+        //public virtual HexCoords GetHexCoordsFromOnedimentionalIndex(int _index)
+        //{
+        //    return new HexCoords();
+        //}
+
+        //public virtual int GetOnedimensionalHexIndex(int q, int r)
+        //{
+        //    return 0;
+        //}
 
         // Parallelograms
         //unordered_set<Hex> map;
@@ -39,9 +91,7 @@
         // Hexagon
         //unordered_set<Hex> map;
         //for (int q = -map_radius; q <= map_radius; q++) {
-        //    int r1 = max(-map_radius, -q - map_radius);
-        //    int r2 = min(map_radius, -q + map_radius);
-        //    for (int r = r1; r <= r2; r++) {
+        //    for (int r = max(-map_radius, -q - map_radius); r <= min(map_radius, -q + map_radius); r++) {
         //        map.insert(Hex(q, r, -q-r));
         //    }
         //}
