@@ -23,5 +23,15 @@ namespace MSS.HexagonalGridToolkit
         {
             return 3 * (R * R + R) + 1;
         }
+
+        /// <summary>
+        /// Calculates a total number of elements in a triangle shaped hexes with size "Size".
+        /// </summary>
+        /// <param name="Size">Size in hexes of the triangle side.</param>
+        /// <returns></returns>
+        public static int CalcNumElementsInTriangle(int Size)
+        {
+            return Size / 2 * (Size + 1);
+        }
     }
 }

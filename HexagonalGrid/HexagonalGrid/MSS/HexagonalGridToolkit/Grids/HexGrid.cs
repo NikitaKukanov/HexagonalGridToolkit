@@ -4,8 +4,8 @@
     {
         #region Grid Params
 
-        public HexLayout Layout { get; private set; }
-        public HexShape Shape { get; private set; }
+        private HexLayout layout;
+        private HexShape shape;
 
         #endregion
 
