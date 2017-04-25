@@ -2,13 +2,14 @@
 {
     public class HexGrid
     {
-        #region Grid Params
-
         private HexLayout layout;
         private HexShape shape;
+        private HexCoords[] hexMap;
 
-        #endregion
-
-
+        public HexGrid(HexLayout _layout, HexShape _shape)
+        {
+            layout = _layout;
+            shape = _shape;
+        }
     }
 }

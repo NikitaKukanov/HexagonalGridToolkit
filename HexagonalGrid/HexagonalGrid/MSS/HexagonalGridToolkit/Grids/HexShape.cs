@@ -26,9 +26,10 @@ namespace MSS.HexagonalGridToolkit
         public static HexShape Triangle1 = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInTriangle(size.x)];
+                int l = 0;
                 for (int q = 0; q <= size.x; q++) {
                     for (int r = 0; r <= size.x - q; r++) {
-                        hexes[q+r] = new HexCoords(q, r);
+                        hexes[l++] = new HexCoords(q, r);
                     }
                 }
                 return hexes;
@@ -37,9 +38,10 @@ namespace MSS.HexagonalGridToolkit
         public static HexShape Triangle2 = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInTriangle(size.x)];
+                int l = 0;
                 for (int q = 0; q <= size.x; q++) {
                     for (int r = size.x - q; r <= size.x; r++) {
-                        hexes[q + r] = new HexCoords(q, r);
+                        hexes[l++] = new HexCoords(q, r);
                     }
                 }
                 return hexes;
@@ -48,9 +50,10 @@ namespace MSS.HexagonalGridToolkit
         public static HexShape Parallelogram = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[size.x * size.y];
+                int l = 0;
                 for (int q = 0; q <= size.x; q++) {
                     for (int r = 0; r <= size.y; r++) {
-                        hexes[q + r] = new HexCoords(q, r);
+                        hexes[l++] = new HexCoords(q, r);
                     }
                 }
                 return hexes;
@@ -59,9 +62,10 @@ namespace MSS.HexagonalGridToolkit
         public static HexShape Hexagon = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInHexagon(size.x)];
+                int l = 0;
                 for (int q = -size.x; q <= size.x; q++) {
                     for (int r = Math.Max(-size.x, -q - size.x); r <= Math.Min(size.x, -q + size.x); r++) {
-                        hexes[q + r] = new HexCoords(q, r);
+                        hexes[l++] = new HexCoords(q, r);
                     }
                 }
                 return hexes;
@@ -70,10 +74,11 @@ namespace MSS.HexagonalGridToolkit
         public static HexShape Rectangle = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[size.x * size.y];
+                int l = 0;
                 for (int r = 0; r <= size.y; r++) {
                     int r_offset = (int)Math.Floor(r / 2.0);
                     for (int q = -r_offset; q < size.x - r_offset; q++) { 
-                        hexes[q + r] = new HexCoords(q, r);
+                        hexes[l++] = new HexCoords(q, r);
                     }
                 }
                 return hexes;
