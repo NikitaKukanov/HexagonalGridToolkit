@@ -23,6 +23,11 @@ namespace MSS.HexagonalGridToolkit
 
         #region Shapes
 
+        public static HexShape Single = new HexShape(new ShapeForm(
+            (size) => {
+                return new HexCoords[] { new HexCoords(0, 0) };
+            }));
+
         public static HexShape Triangle1 = new HexShape(new ShapeForm(
             (size) => {
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInTriangle(size.x)];

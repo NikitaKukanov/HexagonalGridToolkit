@@ -16,37 +16,6 @@ namespace MSS.HexagonalGridToolkit
 
         #endregion
 
-        #region Orientations
-
-        public static readonly HexOrientation PointyOrientation = new HexOrientation() {
-            ConvertionMatrix = new Matrix(new float[,] {
-                { (float)Math.Sqrt(3), (float)Math.Sqrt(3)/2.0f },
-                { 0.0f, 3.0f/2.0f } }),
-            ConvertionInverseMatrix = new Matrix(new float[,] {
-                { (float)Math.Sqrt(3)/3.0f, -1.0f/3.0f},
-                { 0.0f, 2.0f/3.0f} }),
-            StartAngle = 30.0f,
-            HeightCalc = 1.0f,
-            WidthCalc = (float)Math.Sqrt(3) / 2.0f,
-            HorizontalDistCalc = 1.0f,
-            VerticalDistCalc = 3.0f / 4.0f
-        };
-        public static readonly HexOrientation FlatOrientation = new HexOrientation() {
-            ConvertionMatrix = new Matrix(new float[,] {
-                { 3.0f/2.0f, 0 },
-                { (float)Math.Sqrt(3)/2.0f, (float)Math.Sqrt(3) } }),
-            ConvertionInverseMatrix = new Matrix(new float[,] {
-                { 2.0f/3.0f, 0.0f },
-                { -1.0f/3.0f, (float)Math.Sqrt(3)/3.0f } }),
-            StartAngle = 0.0f,
-            HeightCalc = (float)Math.Sqrt(3) / 2.0f,
-            WidthCalc = 1.0f,
-            HorizontalDistCalc = 3.0f / 4.0f,
-            VerticalDistCalc = 1.0f
-        };
-
-        #endregion
-
         public HexLayout(float _hexSize, HexOrientation _orientation)
         {
             Size = _hexSize;
@@ -89,6 +58,33 @@ namespace MSS.HexagonalGridToolkit
 
     public struct HexOrientation
     {
+        public static readonly HexOrientation PointyOrientation = new HexOrientation() {
+            ConvertionMatrix = new Matrix(new float[,] {
+                { (float)Math.Sqrt(3), (float)Math.Sqrt(3)/2.0f },
+                { 0.0f, 3.0f/2.0f } }),
+            ConvertionInverseMatrix = new Matrix(new float[,] {
+                { (float)Math.Sqrt(3)/3.0f, -1.0f/3.0f},
+                { 0.0f, 2.0f/3.0f} }),
+            StartAngle = 30.0f,
+            HeightCalc = 1.0f,
+            WidthCalc = (float)Math.Sqrt(3) / 2.0f,
+            HorizontalDistCalc = 1.0f,
+            VerticalDistCalc = 3.0f / 4.0f
+        };
+        public static readonly HexOrientation FlatOrientation = new HexOrientation() {
+            ConvertionMatrix = new Matrix(new float[,] {
+                { 3.0f/2.0f, 0 },
+                { (float)Math.Sqrt(3)/2.0f, (float)Math.Sqrt(3) } }),
+            ConvertionInverseMatrix = new Matrix(new float[,] {
+                { 2.0f/3.0f, 0.0f },
+                { -1.0f/3.0f, (float)Math.Sqrt(3)/3.0f } }),
+            StartAngle = 0.0f,
+            HeightCalc = (float)Math.Sqrt(3) / 2.0f,
+            WidthCalc = 1.0f,
+            HorizontalDistCalc = 3.0f / 4.0f,
+            VerticalDistCalc = 1.0f
+        };
+
         public Matrix ConvertionMatrix;
         public Matrix ConvertionInverseMatrix;
         public float StartAngle; // used for corners calculation

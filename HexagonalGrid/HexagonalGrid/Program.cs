@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MSS.HexagonalGridToolkit;
+﻿using MSS.HexTesting;
 
 class Program
 {
     static void Main(string[] args)
     {
-
+        var form = new HexTestGame();
     }
+    
 }
