@@ -33,7 +33,7 @@ namespace MSS.HexagonalGridToolkit
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInTriangle(size.x)];
                 int l = 0;
                 for (int q = 0; q <= size.x; q++) {
-                    for (int r = 0; r <= size.x - q; r++) {
+                    for (int r = 0; r < size.x - q; r++) {
                         hexes[l++] = new HexCoords(q, r);
                     }
                 }
@@ -45,7 +45,7 @@ namespace MSS.HexagonalGridToolkit
                 HexCoords[] hexes = new HexCoords[HexMath.CalcNumElementsInTriangle(size.x)];
                 int l = 0;
                 for (int q = 0; q <= size.x; q++) {
-                    for (int r = size.x - q; r <= size.x; r++) {
+                    for (int r = size.x - q; r < size.x; r++) {
                         hexes[l++] = new HexCoords(q, r);
                     }
                 }
@@ -56,8 +56,8 @@ namespace MSS.HexagonalGridToolkit
             (size) => {
                 HexCoords[] hexes = new HexCoords[size.x * size.y];
                 int l = 0;
-                for (int q = 0; q <= size.x; q++) {
-                    for (int r = 0; r <= size.y; r++) {
+                for (int q = 0; q < size.x; q++) {
+                    for (int r = 0; r < size.y; r++) {
                         hexes[l++] = new HexCoords(q, r);
                     }
                 }
@@ -80,7 +80,7 @@ namespace MSS.HexagonalGridToolkit
             (size) => {
                 HexCoords[] hexes = new HexCoords[size.x * size.y];
                 int l = 0;
-                for (int r = 0; r <= size.y; r++) {
+                for (int r = 0; r < size.y; r++) {
                     int r_offset = (int)Math.Floor(r / 2.0);
                     for (int q = -r_offset; q < size.x - r_offset; q++) { 
                         hexes[l++] = new HexCoords(q, r);

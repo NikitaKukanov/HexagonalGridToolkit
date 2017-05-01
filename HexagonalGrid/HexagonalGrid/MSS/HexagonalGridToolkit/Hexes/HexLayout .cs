@@ -32,7 +32,7 @@ namespace MSS.HexagonalGridToolkit
             Matrix resultMatrixOfSize2 = 
                 Matrix.Multiply(Matrix.Multiply(this.Orientation.ConvertionMatrix, new Matrix(new float[,] { { _coords.q }, { _coords.r } })), this.Size);
 
-            return new Point2(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[0, 1]);
+            return new Point2(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[1, 0]);
         }
 
         public HexCoords ConvertWorldPositionToHexCoords(Point2 _worldPosition)
@@ -40,7 +40,7 @@ namespace MSS.HexagonalGridToolkit
             Matrix resultMatrixOfSize2 = 
                 Matrix.Multiply(Matrix.Multiply(this.Orientation.ConvertionInverseMatrix, new Matrix(new float[,] { { _worldPosition.x }, { _worldPosition.y } })), this.Size);
 
-            return new HexCoords(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[0, 1]);
+            return new HexCoords(resultMatrixOfSize2[0, 0], resultMatrixOfSize2[1, 0]);
         }
 
         private Point2[] CalculateCorners()

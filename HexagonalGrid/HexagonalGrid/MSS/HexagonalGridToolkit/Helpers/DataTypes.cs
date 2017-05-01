@@ -64,7 +64,7 @@ namespace MSS.HexagonalGridToolkit
         public static Matrix Multiply(Matrix a, Matrix b)
         {
             // number of columns (1) of the left matrix is the same as the number of rows (0) of the right matrix
-            Debug.Assert(a.data.GetLength(1) != b.data.GetLength(0));
+            Debug.Assert(a.data.GetLength(1) == b.data.GetLength(0));
             // If A is an m(0)-by-n(1) matrix and B is an n(0)-by-p(1) matrix, 
             // then their matrix product A*B is the m(0,a)-by-p(1,b) matrix whose entries are 
             // given by dot product of the corresponding row (0) of A and the corresponding column (1) of B:

@@ -31,7 +31,7 @@ namespace MSS.HexagonalGridToolkit
         /// <returns></returns>
         public static int CalcNumElementsInTriangle(int Size)
         {
-            return Size / 2 * (Size + 1);
+            return (int)Math.Ceiling((float)Size / 2.0f * (Size + 1.0f));
         }
     }
 }

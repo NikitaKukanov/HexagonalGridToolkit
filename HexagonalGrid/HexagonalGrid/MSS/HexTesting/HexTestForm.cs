@@ -40,10 +40,16 @@ namespace MSS.HexTesting
             DrawPolygon(new Point[] { a, b });
         }
 
-        public void DrawPolygon(Point[] _points)
+        public void DrawPolygon(Point[] _points, bool _closed = false)
         {
             if (linesToDraw == null) {
                 linesToDraw = new List<Point[]>();
+            }
+            if (_closed) {
+                var temp = new Point[_points.Length+1];
+                _points.CopyTo(temp, 0);
+                temp[_points.Length] = _points[0];
+                _points = temp;
             }
             linesToDraw.Add(_points);
         }
@@ -60,6 +66,10 @@ namespace MSS.HexTesting
             }
             for (int i = 0; i < linesToDraw.Count; i++) {
                 e.Graphics.DrawLines(Pens.Black, linesToDraw[i]);
+                for (int j = 0; j < linesToDraw[i].Length; j++) {
+                    var p = linesToDraw[i][j];
+                    e.Graphics.DrawEllipse(Pens.Red, new RectangleF(p.X-4, p.Y-4, 8, 8));
+                }
             }
         }
     }

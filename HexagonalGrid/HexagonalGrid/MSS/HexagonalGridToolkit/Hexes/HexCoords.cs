@@ -8,7 +8,7 @@ namespace MSS.HexagonalGridToolkit
     {
         public int q { get; private set; }
         public int r { get; private set; }
-        public int s { get { return -q - s; } }
+        public int s { get { return -q - r; } }
 
         private static HexCoords[] s_neighborsCoords = {
             new HexCoords(1, 0),
